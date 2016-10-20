@@ -16,11 +16,11 @@ var HotAngular = function(settings) {
   this.bootstrapElement;
 
   var _rootElement = this.settings.rootElement || '[ng-app]';
-  var self = this;
+  var _that = this;
 
   document.addEventListener('DOMContentLoaded', function() {
-    self.element = document.querySelector(_rootElement);
-    self.originalContent = self.element.innerHTML;
+    _that.element = document.querySelector(_rootElement);
+    _that.originalContent = _that.element.innerHTML;
   }, false);
 };
 

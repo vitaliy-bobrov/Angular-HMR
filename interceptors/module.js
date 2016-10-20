@@ -13,10 +13,6 @@ module.exports = function(moduleName, injectorArray) {
     angular.module(moduleName);
   }
 
-  if (this.settings.log) {
-    console.log(this.webpackModule);
-  }
-
   this.cache[moduleName] = this.cache[moduleName] || {};
   this.MODULE_CACHE = this.cache[moduleName];
 

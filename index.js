@@ -33,15 +33,20 @@ module.exports = function(source, map) {
   }
 
   var separator = '\n\n';
+  var prependText;
+  var appendText;
+  var node;
   var result;
 
-  var prependText = [
+  prependText = [
+    'if (module.hot) {',
     'module.hot.accept();',
     'var hotAngularLoader = require(' + JSON.stringify(require.resolve('./angular-hot-loader')) + ');',
-    'var hotAngular = new hotAngularLoader(' + JSON.stringify(config) + ');'
+    'var hotAngular = new hotAngularLoader(' + JSON.stringify(config) + ');',
+    '}'
   ].join(' ');
 
-  var appendText = [
+  appendText = [
     //'module.hot.dispose(function(data) {console.log(\'[SBOS] Reloaded\')})'
   ].join(' ');
 
@@ -59,7 +64,7 @@ module.exports = function(source, map) {
     map = makeIdentitySourceMap(source, this.resourcePath);
   }
 
-  var node = new SourceNode(null, null, null, [
+  node = new SourceNode(null, null, null, [
     new SourceNode(null, null, this.resourcePath, prependText),
     SourceNode.fromStringWithSourceMap(processedSource, new SourceMapConsumer(map))
   ]).join(separator);
