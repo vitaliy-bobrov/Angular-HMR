@@ -1,7 +1,6 @@
 
 /* Angular Hor Module Replacement */
 var HotAngular = function(settings) {
-  console.log(settings);
   this.ANGULAR_MODULE;
   this.MODULE_CACHE;
 
@@ -16,9 +15,12 @@ var HotAngular = function(settings) {
   this.name;
   this.bootstrapElement;
 
+  var _rootElement = this.settings.rootElement || '[ng-app]';
+  var self = this;
+
   document.addEventListener('DOMContentLoaded', function() {
-    this.element = this.settings.rootElement ? document.querySelector(this.settings.rootElement) : document.querySelector('[ng-app]');
-    this.originalContent = this.element.innerHTML;
+    self.element = document.querySelector(_rootElement);
+    self.originalContent = self.element.innerHTML;
   }, false);
 };
 
