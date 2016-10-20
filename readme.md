@@ -14,7 +14,7 @@ Forked from [Angular-HMR](https://github.com/yargalot/Angular-HMR)
 ```bash
 npm install --save-dev angular-hot-loader
 ```
-2. Add loader to webpack configuration:
+1. Add loader to webpack configuration:
 ```js
 loaders: [
   {
@@ -36,6 +36,9 @@ Enables module output to console.
 
 ## How it works
 This will inject the new controller / template then reload the state in UI Router
+
+### Note
+If you are using es2015 classes for controllers/services Angluar version should be >= 1.5.0 according to $injector.invoke bug.
 
 Your app structure should be something like:
 
