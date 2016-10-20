@@ -1,43 +1,54 @@
-# Angular HMR
+# Angular Hot Loader
 
-[![Join the chat at https://gitter.im/yargalot/Angular-HMR](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/yargalot/Angular-HMR?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![npm version](https://badge.fury.io/js/angular-hot-loader.svg)](https://badge.fury.io/js/angular-hot-loader)
 
-A (very alpha version) Webpack loader for Hot Module Replacement in Angular applications.
+Webpack loader for Hot Module Replacement in Angular 1.x applications.
 
-This will only work in Ui Router at the moment with a specific app structure shown below. Will work on it a bit more over the week.
+Now works only with UI Router with a specific app structure shown below.
 
-Throwing up a sample app up at https://github.com/yargalot/Angular-HMR-Example
+Forked from [Angular-HMR](https://github.com/yargalot/Angular-HMR)
+
+## Webpack setup
+
+1. Install loader:
+```bash
+npm install --save-dev angular-hot-loader
+```
+2. Add loader to webpack configuration:
+```js
+loaders: [
+  {
+    test: /\.js$/,
+    loader: 'angular-hot!...other loaders'
+  }
+]
+```
+
+## Options
+
+### rootElement {String}
+Default: `[ng-app]`
+Specifies application DOM root element selector.
+
+### log {Boolean}
+Default: `true`
+Enables module output to console.
 
 ## How it works
 This will inject the new controller / template then reload the state in UI Router
 
-Say your structure was all like
+Your app structure should be something like:
 
-```
+```js
+import MyDirective from './your-directive';
+import MyFactory from './your-factory';
+import MyCtrl from './your-controller';
+
 angular
-  .module('app.components')
-  .directive('sessionItem',function() {
-    return {
-        restrict : 'E',
-        scope: {
-            session: '='
-        },
-        bindToController: true,
-        controllerAs: 'state',
-        replace: true,
-        controller: 'sessionItemCtrl',
-        template: require('./template.html')
-    };
-  })
-  .factory('TestFactory', function() {
-    console.log('derp');
-  })
-  .controller('sessionItemCtrl', require('./sessionItemCtrl'));
+  .module('my-app', [ui.router])
+  .directive('MyDirective', MyDirective)
+  .factory('MyFactory', MyFactory)
+  .controller('MyCtrl', MyCtrl);
 ```
 
 and you save that the browser should refresh
-
-### NOTE
-This is pulled from https://github.com/jeroenverfallie/angular-hmr-loader and https://github.com/bitsoflove/jsconfbe-2015
-
-Just more developing on top of that idea. Would feel bad for not mentioning that

@@ -1,12 +1,27 @@
-var path = require('path'),
-    SourceNode = require('source-map').SourceNode,
-    SourceMapConsumer = require('source-map').SourceMapConsumer,
-    makeIdentitySourceMap = require('./makeIdentitySourceMap');
+var path = require('path');
+var loaderUtils = require('loader-utils');
+var SourceNode = require('source-map').SourceNode;
+var SourceMapConsumer = require('source-map').SourceMapConsumer;
+var makeIdentitySourceMap = require('./makeIdentitySourceMap');
 
 
-var angularModule= /angular[\.\n ]+module\(([\'\"\w\.\/\(\)\n\-\,\[\] ]+)\)/g;
+var angularModule = /angular[\.\n ]+module\(([\'\"\w\.\/\(\)\n\-\,\[\] ]+)\)/g;
 
-module.exports = function (source, map) {
+module.exports = function(source, map) {
+  var query = loaderUtils.parseQuery(this.query);
+  var config = {
+    rootElement: '[ng-app]',
+    log: true
+  };
+
+  Object.keys(query).forEach(function(attr) {
+    if (config.hasOwnProperty(attr)) {
+      config[attr] = query[attr];
+    }
+  });
+
+  console.log(config);
+
   if (this.cacheable) {
     this.cacheable();
   }
@@ -15,24 +30,24 @@ module.exports = function (source, map) {
     return this.callback(null, source, map);
   }
 
-  console.log('[AHMR] Replacement Matched');
+  if (config.log) {
+    console.log('[AHL] Replacement Matched');
+  }
 
   var separator = '\n\n';
-  var prependText;
-  var processedSource;
-  var node;
   var result;
 
-  prependText = [
+  var prependText = [
     'module.hot.accept();',
-    'var hotAngular = require(' + JSON.stringify(require.resolve('./angular-hot-replacement')) + ');'
+    'var hotAngularLoader = require(' + JSON.stringify(require.resolve('./angular-hot-loader')) + ');',
+    'var hotAngular = new hotAngularLoader(' + JSON.stringify(config) + ');'
   ].join(' ');
 
   var appendText = [
     //'module.hot.dispose(function(data) {console.log(\'[SBOS] Reloaded\')})'
   ].join(' ');
 
-  processedSource = source.replace(angularModule, 'hotAngular.test(module).module($1)');
+  var processedSource = source.replace(angularModule, 'hotAngular.test(module).module($1)');
 
   if (this.sourceMap === false) {
     return this.callback(null, [
@@ -46,7 +61,7 @@ module.exports = function (source, map) {
     map = makeIdentitySourceMap(source, this.resourcePath);
   }
 
-  node = new SourceNode(null, null, null, [
+  var node = new SourceNode(null, null, null, [
     new SourceNode(null, null, this.resourcePath, prependText),
     SourceNode.fromStringWithSourceMap(processedSource, new SourceMapConsumer(map))
   ]).join(separator);

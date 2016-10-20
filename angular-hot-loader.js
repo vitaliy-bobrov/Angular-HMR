@@ -1,9 +1,10 @@
 
 /* Angular Hor Module Replacement */
-var HotAngular = function() {
+var HotAngular = function(settings) {
   this.ANGULAR_MODULE;
   this.MODULE_CACHE;
 
+  this.settings = settings || {};
   this.cache = {};
   this.configCache = {};
   this.factoryCache = {};
@@ -14,8 +15,10 @@ var HotAngular = function() {
   this.name;
   this.bootstrapElement;
 
-  this.element = document.querySelector('[ng-app]');
-  this.originalContent = this.element.innerHTML;
+  document.addEventListener('DOMContentLoaded', function() {
+    this.element = this.settings.rootElement ? document.querySelector(this.settings.rootElement) : document.querySelector('[ng-app]');
+    this.originalContent = this.element.innerHTML;
+  }, false);
 };
 
 // Angular functions to replace
@@ -38,7 +41,7 @@ HotAngular.prototype.reloadState = function() {
 
   if (elm) {
     if (elm.injector().has('$state')) {
-      console.log('Reloading State');
+      console.log('Reloading UI Router State');
       var $state = elm.injector().get('$state');
 
       $state.transitionTo($state.current, $state.params, {
@@ -69,4 +72,4 @@ HotAngular.prototype.test = function(webpackModule) {
   return this;
 }
 
-module.exports = new HotAngular();
+module.exports = HotAngular;

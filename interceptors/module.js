@@ -20,8 +20,7 @@ module.exports = function(moduleName, injectorArray) {
 
   this.name = this.ANGULAR_MODULE.name;
 
-  var element = document.querySelector('[ng-app]');
-  this.bootstrapElement = angular.element(element);
+  this.bootstrapElement = angular.element(this.element);
 
   this.strapped = true;
 

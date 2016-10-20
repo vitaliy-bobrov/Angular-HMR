@@ -1,27 +1,30 @@
 {
-  "name": "angular-hmr",
-  "version": "0.2.0",
-  "description": "Angular Hot module replacement",
+  "name": "angular-hot-loader",
+  "version": "0.7.0",
+  "description": "Webpack loader for Hot Module Replacement in Angular 1.x applications.",
   "main": "index.js",
   "scripts": {
     "test": "test"
   },
-  "author": "Steve",
+  "author": "Vitaliy Bobrov",
   "license": "ISC",
   "dependencies": {
-    "source-map": "^0.4.2"
+    "loader-utils": "^0.2.16",
+    "source-map": "^0.5.6"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://yargalot@github.com/yargalot/Angular-HMR.git"
+    "url": "git+https://github.com/vitaliy-bobrov/angular-hot-loader.git"
   },
   "keywords": [
     "Angular",
+    "loader",
     "webpack",
-    "HMR"
+    "HMR",
+    "hot module replacement"
   ],
   "bugs": {
-    "url": "https://github.com/yargalot/Angular-HMR/issues"
+    "url": "https://github.com/vitaliy-bobrov/angular-hot-loader/issues"
   },
-  "homepage": "https://github.com/yargalot/Angular-HMR#readme"
+  "homepage": "https://github.com/vitaliy-bobrov/angular-hot-loader#readme"
 }
