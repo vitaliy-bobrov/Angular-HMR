@@ -4,7 +4,9 @@ module.exports = function(name, controllerFunction) {
   var exists = this.MODULE_CACHE[name];
   this.controllerCache[name] = controllerFunction;
 
-  console.log('CONTROLLER', name, controllerFunction);
+  if (this.settings.log) {
+    console.log('CONTROLLER', name, controllerFunction);
+  }
 
   if (!exists) {
     this.MODULE_CACHE[name] = true;

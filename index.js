@@ -20,8 +20,6 @@ module.exports = function(source, map) {
     }
   });
 
-  console.log(config);
-
   if (this.cacheable) {
     this.cacheable();
   }

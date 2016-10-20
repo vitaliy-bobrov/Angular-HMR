@@ -1,6 +1,7 @@
 
 /* Angular Hor Module Replacement */
 var HotAngular = function(settings) {
+  console.log(settings);
   this.ANGULAR_MODULE;
   this.MODULE_CACHE;
 
@@ -41,7 +42,10 @@ HotAngular.prototype.reloadState = function() {
 
   if (elm) {
     if (elm.injector().has('$state')) {
-      console.log('Reloading UI Router State');
+      if (this.settings.log) {
+        console.log('Reloading UI Router State');
+      }
+
       var $state = elm.injector().get('$state');
 
       $state.transitionTo($state.current, $state.params, {
@@ -58,7 +62,9 @@ HotAngular.prototype.reloadState = function() {
 HotAngular.prototype.recompile = function() {
   var elm = this.bootstrapElement;
 
-  console.log('Recompile App');
+  if (this.settings.log) {
+    console.log('Recompile App');
+  }
 
   //elm.injector().get('$compile')(this.originalContent)(elm.scope());
 

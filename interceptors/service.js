@@ -3,7 +3,9 @@ module.exports = function(name, serviceFunction) {
   var exists = this.MODULE_CACHE[name];
   this.serviceCache[name] = serviceFunction;
 
-  console.log('SERVICE', name, serviceFunction);
+  if (this.settings.log) {
+    console.log('SERVICE', name, serviceFunction);
+  }
 
   var intercept = function($provide) {
     $provide.decorator(name, function($delegate) {

@@ -1,6 +1,6 @@
 module.exports = function(name, d) {
     var obj = null;
-    
+
     if (Array.isArray(d)) {
         obj = d[d.length - 1]();
     } else if (typeof d === 'function') {
@@ -31,7 +31,9 @@ module.exports = function(name, d) {
         return obj;
     };
 
-    console.log('DIRECTIVE', name, obj);
+    if (this.settings.log) {
+        console.log('DIRECTIVE', name, obj);
+    }
 
     var changes = false;
 
