@@ -1,8 +1,10 @@
+var toFactory = require('to-factory');
+
 module.exports = function(name, controllerFunction) {
 
   var _that = this;
   var exists = this.MODULE_CACHE[name];
-  this.controllerCache[name] = controllerFunction;
+  this.controllerCache[name] = this.settings.es2015class ? toFactory(controllerFunction) : controllerFunction;
 
   if (this.settings.log) {
     console.log('CONTROLLER', name, controllerFunction);

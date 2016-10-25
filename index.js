@@ -11,7 +11,8 @@ module.exports = function(source, map) {
   var query = loaderUtils.parseQuery(this.query);
   var config = {
     rootElement: '[ng-app]',
-    log: true
+    log: false,
+    es2015class: false
   };
 
   Object.keys(query).forEach(function(attr) {
