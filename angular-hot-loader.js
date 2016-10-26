@@ -36,6 +36,7 @@ HotAngular.prototype.constant = require('./interceptors/constant');
 HotAngular.prototype.provider = require('./interceptors/provider');
 HotAngular.prototype.animation = require('./interceptors/animation');
 HotAngular.prototype.directive = require('./interceptors/directive');
+HotAngular.prototype.component = require('./interceptors/component');
 HotAngular.prototype.controller = require('./interceptors/controller');
 
 

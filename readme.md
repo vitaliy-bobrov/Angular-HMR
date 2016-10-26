@@ -48,12 +48,14 @@ Your app structure should be something like:
 ```js
 import MyFactory from './your-factory';
 import MyCtrl from './your-controller';
+import MyComponent from './your-component';
 
 angular
   .module('my-app', [ui.router])
   .directive('MyDirective', reqire('MyDirective'))
   .factory('MyFactory', MyFactory)
-  .controller('MyCtrl', MyCtrl);
+  .controller('MyCtrl', MyCtrl)
+  .component('MyComponent', MyComponent);
 ```
 
 and you save that the browser should refresh
