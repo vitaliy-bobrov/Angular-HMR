@@ -14,7 +14,7 @@ module.exports = function(name, component) {
         // console.log('TypeOf function', typeof obj.controller === 'function')
         if (obj.controller && typeof obj.controller === 'function') {
             obj.controller = function($injector, $scope) {
-                return $injector.invoke(_that.controllerCache[n], this, {
+                return $injector.invoke(_that.classTransform(_that.controllerCache[n]), this, {
                     '$scope': $scope
                 });
             };
@@ -24,7 +24,7 @@ module.exports = function(name, component) {
     };
 
     if (this.settings.log) {
-        console.log('DIRECTIVE', name, obj);
+        console.log('COMPONENT', name, obj);
     }
 
     var changes = false;

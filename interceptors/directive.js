@@ -22,7 +22,7 @@ module.exports = function(name, d) {
         // console.log('TypeOf function', typeof obj.controller === 'function')
         if (obj.controller && typeof obj.controller === 'function') {
             obj.controller = function($injector, $scope) {
-                return $injector.invoke(_that.controllerCache[n], this, {
+                return $injector.invoke(_that.classTransform(_that.controllerCache[n]), this, {
                     '$scope': $scope
                 });
             };

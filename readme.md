@@ -35,11 +35,6 @@ Specifies application DOM root element selector.
 Default: `false`
 Enables module output to console.
 
-### es2015class {Boolean}
-Default: `false`
-If you use **babel** to transpile es2015 code into es5, set this option to true.
-Because babel restrict to use es2015 class only with `new` keyword and thrown error if you try to call constructor with out `new`.
-
 ## How it works
 This will inject the new controller / template then reload the state in UI Router
 

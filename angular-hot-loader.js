@@ -1,3 +1,5 @@
+var toFactory = require('to-factory');
+var isCalss = require('is-class');
 
 /* Angular Hor Module Replacement */
 var HotAngular = function(settings) {
@@ -14,6 +16,10 @@ var HotAngular = function(settings) {
 
   this.name;
   this.bootstrapElement;
+
+  this.classTransform = function(fn) {
+    return isClass(fn) ? toFactory(fn) : fn;
+  };
 
   var _rootElement = this.settings.rootElement || '[ng-app]';
   var _that = this;
