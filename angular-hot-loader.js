@@ -1,5 +1,4 @@
 var toFactory = require('to-factory');
-var isCalss = require('is-class');
 
 /* Angular Hor Module Replacement */
 var HotAngular = function(settings) {
@@ -16,6 +15,13 @@ var HotAngular = function(settings) {
 
   this.name;
   this.bootstrapElement;
+
+  function isClass(fn) {
+    return (typeof fn === 'function' &&
+            (/^class\s/.test(toString.call(fn)) ||
+            (/.*classCallCheck\(/.test(fnBody(fn)))) // babel.js
+          );
+  }
 
   this.classTransform = function(fn) {
     return isClass(fn) ? toFactory(fn) : fn;
