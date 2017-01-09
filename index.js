@@ -5,7 +5,7 @@ var SourceMapConsumer = require('source-map').SourceMapConsumer;
 var makeIdentitySourceMap = require('./makeIdentitySourceMap');
 
 
-var angularModule = /angular[\.\n ]+module\(([\'\"\w\.\/\(\)\n\-\,\[\] ]+)\)/g;
+var angularModule = /(angular|_angular2\.default)[\.\n\s]+module\(([\'\"\w\.\/\(\)\n\-\,\[\] ]+)\)/g;
 
 module.exports = function(source, map) {
   var query = loaderUtils.parseQuery(this.query);
@@ -50,7 +50,7 @@ module.exports = function(source, map) {
     //'module.hot.dispose(function(data) {console.log(\'[SBOS] Reloaded\')})'
   ].join(' ');
 
-  var processedSource = source.replace(angularModule, 'hotAngular.test(module).module($1)');
+  var processedSource = source.replace(angularModule, 'hotAngular.test(module).module($2)');
 
   if (this.sourceMap === false) {
     return this.callback(null, [
