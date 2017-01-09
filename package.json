@@ -1,6 +1,6 @@
 {
   "name": "angular-hot-loader",
-  "version": "0.8.2",
+  "version": "0.8.3",
   "description": "Webpack loader for Hot Module Replacement in Angular 1.x applications.",
   "main": "index.js",
   "scripts": {
