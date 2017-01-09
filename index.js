@@ -5,7 +5,7 @@ var SourceMapConsumer = require('source-map').SourceMapConsumer;
 var makeIdentitySourceMap = require('./makeIdentitySourceMap');
 
 
-var angularModule = /(angular|_angular2\.default)[\.\n\s]+module\(([\'\"\w\.\/\(\)\n\-\,\[\] ]+)\)/g;
+var angularModule = /[_]?angular[0-9]?[\.\n\s]+(?:default[\.\n\s]+)?module\(([\'\"\w\.\/\(\)\n\-\,\[\] ]+)\)/g;
 
 module.exports = function(source, map) {
   var query = loaderUtils.parseQuery(this.query);
@@ -25,11 +25,15 @@ module.exports = function(source, map) {
   }
 
   if (!source.match(angularModule)) {
+    if (config.log) {
+      console.log(`[AHL] Did not match: ${map.sources.join(', ')}`);
+    }
+
     return this.callback(null, source, map);
   }
 
   if (config.log) {
-    console.log('[AHL] Replacement Matched');
+    console.log(`[AHL] Replacement Matched: ${map.sources.join(', ')}`);
   }
 
   var separator = '\n\n';
@@ -50,7 +54,7 @@ module.exports = function(source, map) {
     //'module.hot.dispose(function(data) {console.log(\'[SBOS] Reloaded\')})'
   ].join(' ');
 
-  var processedSource = source.replace(angularModule, 'hotAngular.test(module).module($2)');
+  var processedSource = source.replace(angularModule, 'hotAngular.test(module).module($1)');
 
   if (this.sourceMap === false) {
     return this.callback(null, [
