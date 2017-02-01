@@ -2,7 +2,6 @@
 
 [![npm version](https://badge.fury.io/js/angular-hot-loader.svg)](https://badge.fury.io/js/angular-hot-loader)
 [![npm](https://img.shields.io/npm/dt/angular-hot-loader.svg)](https://github.com/vitaliy-bobrov/angular-hot-loader)
-[![Dependency Status](https://david-dm.org/vitaliy-bobrov/angular-hot-loader/status.svg)](https://david-dm.org/vitaliy-bobrov/angular-hot-loader#info=dependencies)
 
 Webpack loader for Hot Module Replacement in Angular 1.x applications.
 
