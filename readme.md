@@ -12,15 +12,55 @@ Forked from [Angular-HMR](https://github.com/yargalot/Angular-HMR)
 ## Webpack setup
 
 1. Install loader:
+* npm
 ```bash
 npm install --save-dev angular-hot-loader
 ```
-1. Add loader to webpack configuration:
+
+* yarn
+```bash
+yarn add --dev angular-hot-loader
+```
+
+2. Add loader to webpack configuration:
+* Webpack 1.x:
 ```js
 loaders: [
   {
     test: /\.js$/,
     loader: 'angular-hot!...other loaders'
+  }
+]
+```
+
+* Webpack 2.x:
+```js
+rules: [
+  {
+    test: /\.js$/,
+    use: [
+      'angular-hot-loader',
+      // Any other loaders.
+    ]
+  }
+]
+```
+
+With options:
+
+```js
+rules: [
+  {
+    test: /\.js$/,
+    use: [
+      {
+        loader: 'angular-hot-loader',
+        options: {
+          log: true
+        }
+      },
+      // Any other loaders.
+    ]
   }
 ]
 ```
