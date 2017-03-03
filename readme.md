@@ -23,6 +23,7 @@ yarn add --dev angular-hot-loader
 ```
 
 2. Add loader to webpack configuration:
+
 * Webpack 1.x:
 ```js
 loaders: [
