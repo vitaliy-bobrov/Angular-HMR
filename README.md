@@ -1,5 +1,6 @@
 # Angular Hot Loader
 
+[![Build Status](https://travis-ci.org/vitaliy-bobrov/angular-hot-loader.svg?branch=master)](https://travis-ci.org/vitaliy-bobrov/angular-hot-loader)
 [![npm version](https://badge.fury.io/js/angular-hot-loader.svg)](https://badge.fury.io/js/angular-hot-loader)
 [![npm](https://img.shields.io/npm/dt/angular-hot-loader.svg)](https://github.com/vitaliy-bobrov/angular-hot-loader)
 
