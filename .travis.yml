@@ -9,4 +9,4 @@ os:
   - linux
 
 script:
-  - npm run test && npm run lint
+  - npm run lint
