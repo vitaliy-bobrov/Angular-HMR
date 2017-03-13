@@ -2,10 +2,10 @@
   "name": "angular-hot-loader",
   "version": "0.8.6",
   "description": "🔥 Webpack loader for Hot Module Replacement in Angular 1.x applications.",
-  "main": "index.js",
+  "main": "lib/loader.js",
   "scripts": {
     "test": "exit 0",
-    "lint": "eslint ./*.js ./interceptors/*.js ./module/*.js"
+    "lint": "eslint ./lib/**/*.js"
   },
   "engines": {
     "node": ">=6.0.0"
