@@ -5,15 +5,8 @@ node_js:
 cache:
   yarn: true
 
-sudo: false
-
-install: true
-
 os:
   - linux
-
-before_script:
-  - yarn
 
 script:
   - npm run test && npm run lint
