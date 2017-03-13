@@ -1,7 +1,7 @@
+var logger = require('../logger');
+
 module.exports = angular
   .module('angular-hot-loader', [])
   .config(function() {
-
-    console.log('[AHL] Angular Hot Loader module config phase');
-
+    logger('[AHL] Angular Hot Loader module config phase', 'info');
   });

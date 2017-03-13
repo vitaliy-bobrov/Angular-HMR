@@ -1,45 +1,68 @@
 var toFactory = require('to-factory');
+var logger = require('./logger');
 
-/* Angular Hor Module Replacement */
+/**
+ * Angular Hot Loader.
+ * @param {Object} settings - hot loader setiings.
+ */
 var HotAngular = function(settings) {
   this.ANGULAR_MODULE;
   this.MODULE_CACHE;
 
   this.settings = settings || {};
+
+  // Create cahing objects.
   this.cache = {};
   this.configCache = {};
+  this.constantCache = {};
+  this.controllerCache = {};
   this.factoryCache = {};
   this.serviceCache = {};
+  this.valueCache = {};
   this.templateCache = {};
-  this.controllerCache = {};
 
   this.name;
   this.bootstrapElement;
 
   var toString = Function.prototype.toString;
 
+  /**
+   * Gets transpiled function body.
+   * @param {Function} fn - transpiled function source.
+   */
   function fnBody(fn) {
     return toString.call(fn).replace(/^[^{]*{\s*/,'').replace(/\s*}[^}]*$/,'');
   }
 
+  /**
+   * Checks if function is es6 or Babel class.
+   * @param {Function} fn - transpiled function source.
+   */
   function isClass(fn) {
     return (typeof fn === 'function' &&
-            (/^class\s/.test(toString.call(fn)) ||
-            (/.*classCallCheck\(/.test(fnBody(fn)))) // babel.js
-          );
+      (/^class\s/.test(toString.call(fn)) ||
+       // babel class definition.
+      (/.*classCallCheck\(/.test(fnBody(fn)))));
   }
 
+  /**
+   * Wraps class functions in factory.
+   */
   this.classTransform = function(fn) {
     return isClass(fn) ? toFactory(fn) : fn;
   };
 
-  var _rootElement = this.settings.rootElement || '[ng-app]';
-  var _that = this;
+  this.logger = this.settings.log ? logger : function() {};
 
-  document.addEventListener('DOMContentLoaded', function() {
-    _that.element = document.querySelector(_rootElement);
-    _that.originalContent = _that.element.innerHTML;
-  }, false);
+  /**
+   * Document load handler.
+   */
+  function loadHandler() {
+    this.element = document.querySelector(this.settings.rootElement);
+    this.originalContent = this.element.innerHTML;
+  }
+
+  document.addEventListener('DOMContentLoaded', loadHandler.bind(this), false);
 };
 
 // Angular functions to replace
@@ -57,15 +80,12 @@ HotAngular.prototype.directive = require('./interceptors/directive');
 HotAngular.prototype.component = require('./interceptors/component');
 HotAngular.prototype.controller = require('./interceptors/controller');
 
-
 HotAngular.prototype.reloadState = function() {
   var elm = this.bootstrapElement;
 
   if (elm) {
     if (elm.injector().has('$state')) {
-      if (this.settings.log) {
-        console.log('Reloading UI Router State');
-      }
+      this.logger('Reloading UI Router State', 'info');
 
       var $state = elm.injector().get('$state');
 
@@ -81,11 +101,8 @@ HotAngular.prototype.reloadState = function() {
 };
 
 HotAngular.prototype.recompile = function() {
-  var elm = this.bootstrapElement;
-
-  if (this.settings.log) {
-    console.log('Recompile App');
-  }
+  // var elm = this.bootstrapElement;
+  this.logger('Recompile App', 'info');
 
   //elm.injector().get('$compile')(this.originalContent)(elm.scope());
 

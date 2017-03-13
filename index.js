@@ -1,22 +1,23 @@
-var path = require('path');
 var loaderUtils = require('loader-utils');
 var SourceNode = require('source-map').SourceNode;
 var SourceMapConsumer = require('source-map').SourceMapConsumer;
 var makeIdentitySourceMap = require('./makeIdentitySourceMap');
 
-
 var angularModule = /[_]?angular[0-9]?[\.\n\s]+(?:default[\.\n\s]+)?module\(([\'\"\w\.\/\(\)\n\-\,\[\] ]+)\)/g;
 
+var logger = require('./logger');
+var message = '';
+
 module.exports = function(source, map) {
-  var query = loaderUtils.parseQuery(this.query);
+  const options = loaderUtils.getOptions(this);
   var config = {
     rootElement: '[ng-app]',
     log: false
   };
 
-  Object.keys(query).forEach(function(attr) {
+  Object.keys(options).forEach(function(attr) {
     if (config.hasOwnProperty(attr)) {
-      config[attr] = query[attr];
+      config[attr] = options[attr];
     }
   });
 
@@ -25,42 +26,37 @@ module.exports = function(source, map) {
   }
 
   if (!source.match(angularModule)) {
-    if (config.log) {
-      console.log(`[AHL] Did not match: ${map.sources.join(', ')}`);
-    }
+    message = `[AHL] Did not match: ${map.sources.join(', ')}`;
+    logger(message, 'error');
 
     return this.callback(null, source, map);
   }
 
   if (config.log) {
-    console.log(`[AHL] Replacement Matched: ${map.sources.join(', ')}`);
+    message = `[AHL] Replacement Matched: ${map.sources.join(', ')}`;
+
+    logger(message, 'info');
   }
 
   var separator = '\n\n';
   var prependText;
-  var appendText;
   var node;
   var result;
 
-  prependText = [
-    'if (module.hot) {',
-    'module.hot.accept();',
-    'var hotAngularLoader = require(' + JSON.stringify(require.resolve('./angular-hot-loader')) + ');',
-    'var hotAngular = new hotAngularLoader(' + JSON.stringify(config) + ');',
-    '}'
-  ].join(' ');
-
-  appendText = [
-    //'module.hot.dispose(function(data) {console.log(\'[SBOS] Reloaded\')})'
-  ].join(' ');
+  prependText = `
+    if (module.hot) {
+      module.hot.accept();
+      var hotAngularLoader = require('${JSON.stringify(require.resolve('./angular-hot-loader'))}');
+      var hotAngular = new hotAngularLoader('${JSON.stringify(config)}');
+    }
+  `;
 
   var processedSource = source.replace(angularModule, 'hotAngular.test(module).module($1)');
 
   if (this.sourceMap === false) {
     return this.callback(null, [
       prependText,
-      processedSource,
-      appendText
+      processedSource
     ].join(separator));
   }
 

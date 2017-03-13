@@ -1,12 +1,6 @@
 module.exports = function(configFunction) {
-
-  var _that = this;
-  var name;
-
-  if (this.settings.log) {
-    console.log('CONFIG', configFunction);
-  }
-
+  this.logger(`COFIG "${this.ANGULAR_MODULE}"
+    ${configFunction}`, 'info');
   this.ANGULAR_MODULE.config(configFunction);
 
   return this;

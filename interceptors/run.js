@@ -1,7 +1,6 @@
 module.exports = function(runFunction) {
-  if (this.settings.log) {
-    console.log('RUN', runFunction);
-  }
+  this.logger(`RUN "${this.ANGULAR_MODULE}":
+     ${runFunction}`, 'info');
 
   this.ANGULAR_MODULE.run(runFunction);
 

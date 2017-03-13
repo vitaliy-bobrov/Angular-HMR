@@ -1,5 +1,4 @@
 module.exports = function(moduleName, injectorArray) {
-
   this.strapped = false;
 
   if (this.strapped) {

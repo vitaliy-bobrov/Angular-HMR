@@ -1,27 +1,24 @@
 module.exports = function(name, value) {
-
-  if (!this.valueCache) {
-    this.valueCache = {};
-  }
-
-  var exists = this.valueCache[name];
+  var exists = !!this.valueCache[name];
 
   this.valueCache[name] = value;
 
-  if (!exists) {
-    this.ANGULAR_MODULE.value(name, this.valueCache[name]);
-  }
+  this.logger(`VALUE "${name}":
+    ${value}`, 'info');
 
   if (exists) {
+    /* eslint-disable */
     this.valueInject = this.valueCache[name];
 
     this.bootstrapElement.injector().invoke([name, function(value) {
-      console.log(value, this.valueInject);
       value = this.valueInject;
-      this.reloadState();
     }], this);
+    /* eslint-enable */
+
+    this.reloadState();
+  } else {
+    this.ANGULAR_MODULE.value(name, this.valueCache[name]);
   }
 
   return this;
-
 };

@@ -1,27 +1,24 @@
 module.exports = function(name, constant) {
-
-  if (!this.constantCache) {
-    this.constantCache = {};
-  }
-
-  var exists = this.constantCache[name];
+  var exists = !!this.constantCache[name];
 
   this.constantCache[name] = constant;
 
-  if (!exists) {
-    this.ANGULAR_MODULE.constant(name, this.constantCache[name]);
-  }
+  this.logger(`CONSTANT "${name}"
+    ${constant}`, 'info');
 
   if (exists) {
+    /* eslint-disable */
     this.constantInject = this.constantCache[name];
 
     this.bootstrapElement.injector().invoke([name, function(constant) {
-      console.log(constant, this.constantInject);
       constant = this.constantInject;
-      this.reloadState();
     }], this);
+    /* eslint-enable */
+
+    this.reloadState();
+  } else {
+    this.ANGULAR_MODULE.constant(name, this.constantCache[name]);
   }
 
   return this;
-
 };

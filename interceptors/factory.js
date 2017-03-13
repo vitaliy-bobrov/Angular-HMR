@@ -1,17 +1,9 @@
 module.exports = function(name, factoryFunction) {
-
-  var _that = this;
-  var exists = this.MODULE_CACHE[name];
+  var exists = !!this.MODULE_CACHE[name];
   this.factoryCache[name] = factoryFunction;
 
-  if (this.settings.log) {
-    console.log('FACTORY', name, factoryFunction);
-  }
-
-  if (!exists) {
-    this.MODULE_CACHE[name] = true;
-    this.ANGULAR_MODULE.factory(name, factoryFunction);
-  }
+  this.logger(`FACTORY "${name}":
+    ${factoryFunction}`, 'info');
 
   if (exists) {
     this.factoryInject = factoryFunction();
@@ -21,9 +13,10 @@ module.exports = function(name, factoryFunction) {
     }], this);
 
     this.reloadState();
+  } else {
+    this.MODULE_CACHE[name] = true;
+    this.ANGULAR_MODULE.factory(name, factoryFunction);
   }
 
-
   return this;
-
 };

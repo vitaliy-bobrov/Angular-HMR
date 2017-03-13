@@ -1,11 +1,9 @@
 module.exports = function(name, serviceFunction) {
-
-  var exists = this.MODULE_CACHE[name];
+  var exists = !!this.MODULE_CACHE[name];
   this.serviceCache[name] = serviceFunction;
 
-  if (this.settings.log) {
-    console.log('SERVICE', name, serviceFunction);
-  }
+  this.logger(`SERVICE "${name}":
+    ${serviceFunction}`, 'info');
 
   var intercept = function($provide) {
     $provide.decorator(name, function($delegate) {
@@ -13,22 +11,21 @@ module.exports = function(name, serviceFunction) {
     });
   };
 
-  if (!exists) {
-    this.MODULE_CACHE[name] = true;
-    this.ANGULAR_MODULE.service(name, this.serviceCache[name]);
-    this.ANGULAR_MODULE.config(intercept);
-  }
-
   if (exists) {
+    /* eslint-disable */
     this.serviceInject = serviceFunction;
 
     this.bootstrapElement.injector().invoke([name, function(service) {
       service = this.serviceInject;
     }], this);
+    /* eslint-enable */
 
     this.reloadState();
+  } else {
+    this.MODULE_CACHE[name] = true;
+    this.ANGULAR_MODULE.service(name, this.serviceCache[name]);
+    this.ANGULAR_MODULE.config(intercept);
   }
 
   return this;
-
 };

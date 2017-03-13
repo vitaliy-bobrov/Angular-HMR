@@ -3,7 +3,7 @@
 [![npm version](https://badge.fury.io/js/angular-hot-loader.svg)](https://badge.fury.io/js/angular-hot-loader)
 [![npm](https://img.shields.io/npm/dt/angular-hot-loader.svg)](https://github.com/vitaliy-bobrov/angular-hot-loader)
 
-Webpack loader for Hot Module Replacement in Angular 1.x applications.
+🔥 Webpack loader for Hot Module Replacement in Angular 1.x applications.
 
 Now works only with UI Router with a specific app structure shown below.
 
@@ -24,16 +24,6 @@ yarn add --dev angular-hot-loader
 
 2. Add loader to webpack configuration:
 
-* Webpack 1.x:
-```js
-loaders: [
-  {
-    test: /\.js$/,
-    loader: 'angular-hot!...other loaders'
-  }
-]
-```
-
 * Webpack 2.x:
 ```js
 rules: [
@@ -43,6 +33,16 @@ rules: [
       'angular-hot-loader',
       // Any other loaders.
     ]
+  }
+]
+```
+
+* Webpack 1.x:
+```js
+loaders: [
+  {
+    test: /\.js$/,
+    loader: 'angular-hot!...other loaders'
   }
 ]
 ```
@@ -65,6 +65,11 @@ rules: [
   }
 ]
 ```
+
+### Webpack Hot Module Replacement
+See Webpack documentation:
+- [Webpack 2.x](https://webpack.js.org/configuration/dev-server/#devserver-hot)
+- [Webpack 1.x](http://webpack.github.io/docs/hot-module-replacement-with-webpack.html)
 
 ## Options
 
