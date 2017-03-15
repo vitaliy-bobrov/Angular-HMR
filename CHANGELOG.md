@@ -1,4 +1,4 @@
-* 0.8.7
+* 0.9.0
 - Updated README with links to Webpack HMR configuration.
 - Added angular as PeerDependency.
 - Added linting.
