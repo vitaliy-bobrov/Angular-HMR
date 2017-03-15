@@ -94,10 +94,10 @@ import MyComponent from './your-component';
 
 angular
   .module('my-app', [ui.router])
-  .directive('MyDirective', reqire('MyDirective'))
+  .directive('MyDirective', require('MyDirective'))
   .factory('MyFactory', MyFactory)
   .controller('MyCtrl', MyCtrl)
-  .component('MyComponent', MyComponent);
+  .component('myComponent', MyComponent);
 ```
 
 and you save that the browser should refresh
