@@ -93,9 +93,9 @@ import MyCtrl from './your-controller';
 import MyComponent from './your-component';
 
 angular
-  .module('my-app', ['ui.router'])
-  .directive('MyDirective', reqire('MyDirective'))
+  .module('my-app', [ui.router])
+  .directive('MyDirective', require('MyDirective'))
   .factory('MyFactory', MyFactory)
   .controller('MyCtrl', MyCtrl)
-  .component('MyComponent', MyComponent);
+  .component('myComponent', MyComponent);
 ```
