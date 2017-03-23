@@ -10,7 +10,12 @@
   "engines": {
     "node": ">=6.0.0"
   },
-  "author": "Vitaliy Bobrov",
+  "author": "Vitaliy Bobrov <bobrov1989@gmail.com> (https://vitaliy-bobrov.github.io)",
+  "contributors": [
+    "João Vieira (https://github.com/joaovieira)",
+    "Jonas Pauthier (https://github.com/Nargonath)",
+    "Sergey Bekrin (https://github.com/sergeybekrin)"
+  ],
   "license": "ISC",
   "dependencies": {
     "loader-utils": "^1.0.3",
