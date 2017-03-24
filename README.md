@@ -46,7 +46,8 @@ rules: [
       {
         loader: 'angular-hot-loader',
         options: {
-          log: true
+          log: true,
+          rootElement: 'html'
         }
       },
       // Any other loaders.
@@ -75,7 +76,7 @@ See Webpack documentation:
 ### rootElement {String}
 Default: `[ng-app]`
 
-Specifies application DOM root element selector.
+Specifies application DOM root element selector. Use 'html' when boostraping your Angular app on document.
 
 ### log {Boolean}
 Default: `false`
