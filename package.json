@@ -11,7 +11,7 @@
     "node": ">=6.0.0"
   },
   "contributors": [
-    "Vitaliy Bobrov <bobrov1989@gmail.com> (https://vitaliy-bobrov.github.io)"
+    "Vitaliy Bobrov <bobrov1989@gmail.com> (https://vitaliy-bobrov.github.io)",
     "João Vieira (https://github.com/joaovieira)",
     "Jonas Pauthier (https://github.com/Nargonath)",
     "Sergey Bekrin (https://github.com/sergeybekrin)"
