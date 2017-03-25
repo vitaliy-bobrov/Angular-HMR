@@ -1,3 +1,7 @@
+## 0.9.1
+### Buf Fixes:
+- Fixed **directive**: $injector for directives, thanks @joaovieira.
+
 ## 0.9.0
 ### Bug Fixes:
 - Fixed feat(): handle multiple async modules, es6 classes, thanks @joaovieira.
