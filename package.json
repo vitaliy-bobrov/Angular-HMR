@@ -37,9 +37,6 @@
     "url": "https://github.com/vitaliy-bobrov/angular-hot-loader/issues"
   },
   "homepage": "https://github.com/vitaliy-bobrov/angular-hot-loader#readme",
-  "peerDependencies": {
-    "angular": "^1.5.0"
-  },
   "devDependencies": {
     "eslint": "^3.17.1",
     "eslint-plugin-node": "^4.2.0"
