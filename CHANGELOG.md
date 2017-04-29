@@ -1,9 +1,13 @@
+## 0.9.3
+### Bug Fixes:
+- Fixed **windows path**: Windows path missed slahes, thanks @Sn0wFox.
+
 ## 0.9.2
-### Buf Fixes:
+### Bug Fixes:
 - Fixed **controller transform**: $element, $attrs and $transclude are locals, not providers, thanks @joaovieira.
 
 ## 0.9.1
-### Buf Fixes:
+### Bug Fixes:
 - Fixed **directive**: $injector for directives, thanks @joaovieira.
 
 ## 0.9.0
