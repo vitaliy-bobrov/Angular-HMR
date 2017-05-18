@@ -1,3 +1,7 @@
+## 0.9.5
+### Bug Fixes:
+- Fixed **decorator**: Add decorator invoke.
+
 ## 0.9.4
 ### Bug Fixes:
 - Fixed **filter**: Add filter invoke.
