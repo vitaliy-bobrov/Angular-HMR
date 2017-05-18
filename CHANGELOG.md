@@ -1,3 +1,10 @@
+## 0.9.4
+### Bug Fixes:
+- Fixed **filter**: Add filter invoke.
+- Fixed **factory**: Use cached factory if exists.
+
+### Dependencies update
+
 ## 0.9.3
 ### Bug Fixes:
 - Fixed **windows path**: Windows path missed slahes, thanks @Sn0wFox.
