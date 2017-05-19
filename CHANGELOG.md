@@ -1,3 +1,7 @@
+## 0.9.6
+### Bug Fixes:
+- Fixed **babel-runtime**: Make usage possible..
+
 ## 0.9.5
 ### Bug Fixes:
 - Fixed **decorator**: Add decorator invoke.
