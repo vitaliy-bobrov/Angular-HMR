@@ -1,6 +1,10 @@
+## 0.9.7
+### Bug Fixes:
+- Move match logging to avoid undefined `map`.
+
 ## 0.9.6
 ### Bug Fixes:
-- Fixed **babel-runtime**: Make usage possible..
+- Fixed **babel-runtime**: Make usage possible.
 
 ## 0.9.5
 ### Bug Fixes:
