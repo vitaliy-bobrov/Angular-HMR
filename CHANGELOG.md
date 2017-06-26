@@ -1,3 +1,7 @@
+## 0.9.8
+### Bug Fixes:
+- Cache allow same names for different angular parts.
+
 ## 0.9.7
 ### Bug Fixes:
 - Move match logging to avoid undefined `map`.
