@@ -18,7 +18,7 @@
   ],
   "license": "ISC",
   "dependencies": {
-    "loader-utils": "^1.0.3",
+    "loader-utils": "^1.1.0",
     "source-map": "^0.5.6",
     "to-factory": "^1.0.0"
   },
@@ -38,8 +38,8 @@
   },
   "homepage": "https://github.com/vitaliy-bobrov/angular-hot-loader#readme",
   "devDependencies": {
-    "eslint": "^3.17.1",
-    "eslint-plugin-node": "^4.2.0"
+    "eslint": "^4.1.1",
+    "eslint-plugin-node": "^5.1.0"
   },
   "eslintConfig": {
     "env": {
