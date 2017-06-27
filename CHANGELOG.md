@@ -1,3 +1,7 @@
+## 0.9.9
+### Dependencies update
+### Code style updates
+
 ## 0.9.8
 ### Bug Fixes:
 - Cache allow same names for different angular parts.
