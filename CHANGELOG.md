@@ -1,3 +1,9 @@
+## 0.9.10
+### Dependencies update
+### Add config functions cache
+### Update module RegExp to match all module definitions
+### Update recompile functionality
+
 ## 0.9.9
 ### Dependencies update
 ### Code style updates
