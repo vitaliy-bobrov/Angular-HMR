@@ -88,6 +88,8 @@ This will inject the new controller / template / service / whatever and then rel
 
 ### Example app structure:
 
+**Note: Loader can't work with inline function declarations for controller, factory, service, etc. Please replase them with declarations.**
+
 ```js
 import MyFactory from './your-factory';
 import MyCtrl from './your-controller';

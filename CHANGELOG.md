@@ -1,8 +1,12 @@
+## 0.9.11
+- Update documentation with notes about inline function inside angular methods declaration.
+
 ## 0.9.10
 ### Dependencies update
-### Add config functions cache
-### Update module RegExp to match all module definitions
-### Update recompile functionality
+### Bug Fixes:
+- Add config functions cache
+- Update module RegExp to match all module definitions
+- Update recompile functionality
 
 ## 0.9.9
 ### Dependencies update
