@@ -1,7 +1,11 @@
+## 0.9.13
+### Bug Fixes:
+- Fix arrow function arguments.
+
 ## 0.9.12
 ### Bug Fixes:
 - Update module RegExp, thanks @miluoshi.
-- Fix directive strict DI compatability, thanks @miluoshi.
+- Fix directive strict DI compatibility, thanks @miluoshi.
 
 ## 0.9.11
 - Update documentation with notes about inline function inside angular methods declaration.
