@@ -1,3 +1,7 @@
+## 0.9.14
+### Bug Fixes:
+- Implemented missed `info` interceptor.
+
 ## 0.9.13
 ### Bug Fixes:
 - Fix arrow function arguments.
